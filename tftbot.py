@@ -22,13 +22,6 @@ def clique(image):
     sleep(0.15)
     gui.mouseUp()
 
-
-#Abre o launcher se estiver minimizado
-def cliente():
-    if not tela('tft logo.png'):
-        clique('Cliente.png')
-
-
 #Inicia a busca de partida
 def encontrarpartida():
     if tela('encontrarpartida.png'):
@@ -71,15 +64,13 @@ def jogarnovamente():
 #Caso alguma missão seja concluída, ele aceita a missão e continua o loop
 def missao():
     if tela('ok.png'):
-            clique('ok.png')
+        clique('ok.png')
 
 #Programa principal
 def principal():
-    f = 0
     while True:
+        ok1 = True
         ok = True
-        if f == 0:
-            cliente()
         while not tela('nafila.png'):
             encontrarpartida()
         while not tela('1-1.png'):
@@ -95,7 +86,6 @@ def principal():
             if tela('continuar.png'):
                 clique('continuar.png')
                 ok = False
-        f += 1
-        while not tela('jogarnovamente.png'):
+        while not tela('tft logo.png'):
             missao()
-        jogarnovamente()
+            jogarnovamente()
