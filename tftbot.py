@@ -66,6 +66,11 @@ def missao():
     if tela('ok.png'):
         clique('ok.png')
 
+#Pula a espera por estatísticas
+def estatisticas():
+    if tela('estatisticas.png'):
+        clique('estatisticas.png')
+
 #Programa principal
 def principal():
     while True:
@@ -87,5 +92,6 @@ def principal():
                 clique('continuar.png')
                 ok = False
         while not tela('tft logo.png'):
+            estatisticas()
             missao()
             jogarnovamente()
