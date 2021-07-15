@@ -1,22 +1,29 @@
+import win32gui
 import pyautogui as gui
-from python_imagesearch.imagesearch import imagesearch as search
 from time import sleep
-import tkinter as tk
+from python_imagesearch.imagesearch import imagesearch as search
 
 gui.FAILSAFE = True
 
+leagueClient = win32gui.FindWindow(0, "League of Legends")
 
 #Verifica se há aquela imagem na tela, retornando sua posição.
 def tela(image,precision = 0.8):
     pos = search(image,precision)
     if pos[0] != -1:
         return pos
-    
 
 #Move o cursor até a posição da imagem e dá um clique com o botão esquerdo
 def clique(image):
     x = tela(image)
     gui.moveTo(x)
+    sleep(0.15)
+    gui.mouseDown()
+    sleep(0.15)
+    gui.mouseUp()
+
+def clique1(x,y):
+    gui.moveTo(x,y)
     sleep(0.15)
     gui.mouseDown()
     sleep(0.15)
@@ -74,6 +81,8 @@ def estatisticas():
 #Programa principal
 def principal():
     while True:
+        win32gui.SetForegroundWindow(leagueClient)
+        win32gui.BringWindowToTop(leagueClient)
         ok1 = True
         ok = True
         while not tela('nafila.png'):
@@ -91,7 +100,10 @@ def principal():
             if tela('continuar.png'):
                 clique('continuar.png')
                 ok = False
+        sleep(15)
         while not tela('tft logo.png'):
+            win32gui.SetForegroundWindow(leagueClient)
+            win32gui.BringWindowToTop(leagueClient)
+            clique1(846,835)
             estatisticas()
             missao()
-            jogarnovamente()
