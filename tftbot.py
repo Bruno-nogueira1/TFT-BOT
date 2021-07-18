@@ -105,5 +105,5 @@ def principal():
             win32gui.SetForegroundWindow(leagueClient)
             win32gui.BringWindowToTop(leagueClient)
             clique1(846,835)
-            estatisticas()
+            clique1(840,510)
             missao()
